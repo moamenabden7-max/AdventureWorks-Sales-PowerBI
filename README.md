@@ -22,7 +22,7 @@ The report references calendar, product, category, customer, and territory looku
 
 ## How to open
 
-The `.pbix` report is prepared for this project and will be added after a public-release review. Once available, open it with Power BI Desktop; refreshing may require updated source settings.
+Download `adventure.pbix` and open it with Power BI Desktop. The report contains an embedded data model; refreshing may require updated source settings.
 
 ## Tools
 
@@ -31,6 +31,7 @@ Power BI · SQL · DAX
 ## Repository contents
 
 - `README.md` — project summary and report guide.
+- `adventure.pbix` — Power BI report and embedded model.
 
 Dashboard screenshots can be added once exported from Power BI Desktop.
 
