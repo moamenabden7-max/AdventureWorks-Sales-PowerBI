@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="700" viewBox="0 0 1200 700">
+<rect width="1200" height="700" fill="#f3f6fa"/>
+<rect width="1200" height="150" fill="#10273e"/>
+<text x="48" y="48" fill="#67ddc7" font-family="Arial,sans-serif" font-size="15" font-weight="700">MOAMEN TAHA  /  POWER BI PORTFOLIO</text>
+<text x="48" y="96" fill="white" font-family="Arial,sans-serif" font-size="35" font-weight="700">AdventureWorks</text>
+<text x="48" y="125" fill="#c8d6e5" font-family="Arial,sans-serif" font-size="17">Sales, customers &amp; scenario analysis  ·  2020-01-01 to 2022-06-30</text>
+<rect x="48" y="174" width="258" height="103" rx="12" fill="white"/>
+<text x="68" y="204" fill="#52677e" font-family="Arial,sans-serif" font-size="13" font-weight="700">REVENUE</text>
+<text x="68" y="248" fill="#10273e" font-family="Arial,sans-serif" font-size="34" font-weight="700">24.91M</text>
+<rect x="330" y="174" width="258" height="103" rx="12" fill="white"/>
+<text x="350" y="204" fill="#52677e" font-family="Arial,sans-serif" font-size="13" font-weight="700">GROSS PROFIT*</text>
+<text x="350" y="248" fill="#10273e" font-family="Arial,sans-serif" font-size="34" font-weight="700">10.46M</text>
+<rect x="612" y="174" width="258" height="103" rx="12" fill="white"/>
+<text x="632" y="204" fill="#52677e" font-family="Arial,sans-serif" font-size="13" font-weight="700">UNITS SOLD</text>
+<text x="632" y="248" fill="#10273e" font-family="Arial,sans-serif" font-size="34" font-weight="700">84,174</text>
+<rect x="894" y="174" width="258" height="103" rx="12" fill="white"/>
+<text x="914" y="204" fill="#52677e" font-family="Arial,sans-serif" font-size="13" font-weight="700">UNIT RETURN RATE</text>
+<text x="914" y="248" fill="#10273e" font-family="Arial,sans-serif" font-size="34" font-weight="700">2.17%</text>
+<rect x="48" y="300" width="1104" height="283" rx="12" fill="white"/>
+<text x="72" y="336" fill="#10273e" font-family="Arial,sans-serif" font-size="20" font-weight="700">Monthly revenue</text>
+<rect x="88.0" y="478.7" width="29.0" height="51.3" rx="2" fill="#0c8b82"><title>2020-01: 585,312.65</title></rect>
+<text x="88.0" y="553" fill="#52677e" font-family="Arial,sans-serif" font-size="12">2020-01</text>
+<rect x="122.0" y="483.4" width="29.0" height="46.6" rx="2" fill="#0c8b82"><title>2020-02: 532,226.25</title></rect>
+<rect x="156.0" y="473.7" width="29.0" height="56.3" rx="2" fill="#0c8b82"><title>2020-03: 643,436.10</title></rect>
+<rect x="190.0" y="472.8" width="29.0" height="57.2" rx="2" fill="#0c8b82"><title>2020-04: 653,364.04</title></rect>
+<rect x="224.0" y="472.3" width="29.0" height="57.7" rx="2" fill="#0c8b82"><title>2020-05: 659,325.90</title></rect>
+<rect x="258.0" y="471.3" width="29.0" height="58.7" rx="2" fill="#0c8b82"><title>2020-06: 669,988.67</title></rect>
+<rect x="292.0" y="487.4" width="29.0" height="42.6" rx="2" fill="#0c8b82"><title>2020-07: 486,115.01</title></rect>
+<text x="292.0" y="553" fill="#52677e" font-family="Arial,sans-serif" font-size="12">2020-07</text>
+<rect x="326.0" y="483.0" width="29.0" height="47.0" rx="2" fill="#0c8b82"><title>2020-08: 536,452.82</title></rect>
+<rect x="360.0" y="499.9" width="29.0" height="30.1" rx="2" fill="#0c8b82"><title>2020-09: 344,062.87</title></rect>
+<rect x="394.0" y="494.6" width="29.0" height="35.4" rx="2" fill="#0c8b82"><title>2020-10: 404,276.60</title></rect>
+<rect x="428.0" y="501.4" width="29.0" height="28.6" rx="2" fill="#0c8b82"><title>2020-11: 326,611.15</title></rect>
+<rect x="462.0" y="480.6" width="29.0" height="49.4" rx="2" fill="#0c8b82"><title>2020-12: 563,761.53</title></rect>
+<rect x="496.0" y="492.1" width="29.0" height="37.9" rx="2" fill="#0c8b82"><title>2021-01: 432,425.74</title></rect>
+<text x="496.0" y="553" fill="#52677e" font-family="Arial,sans-serif" font-size="12">2021-01</text>
+<rect x="530.0" y="488.5" width="29.0" height="41.5" rx="2" fill="#0c8b82"><title>2021-02: 474,162.79</title></rect>
+<rect x="564.0" y="488.7" width="29.0" height="41.3" rx="2" fill="#0c8b82"><title>2021-03: 471,961.88</title></rect>
+<rect x="598.0" y="486.7" width="29.0" height="43.3" rx="2" fill="#0c8b82"><title>2021-04: 494,957.42</title></rect>
+<rect x="632.0" y="482.2" width="29.0" height="47.8" rx="2" fill="#0c8b82"><title>2021-05: 545,534.74</title></rect>
+<rect x="666.0" y="483.2" width="29.0" height="46.8" rx="2" fill="#0c8b82"><title>2021-06: 533,824.98</title></rect>
+<rect x="700.0" y="458.6" width="29.0" height="71.4" rx="2" fill="#0c8b82"><title>2021-07: 815,356.47</title></rect>
+<text x="700.0" y="553" fill="#52677e" font-family="Arial,sans-serif" font-size="12">2021-07</text>
+<rect x="734.0" y="459.6" width="29.0" height="70.4" rx="2" fill="#0c8b82"><title>2021-08: 804,193.39</title></rect>
+<rect x="768.0" y="446.6" width="29.0" height="83.4" rx="2" fill="#0c8b82"><title>2021-09: 952,743.49</title></rect>
+<rect x="802.0" y="439.8" width="29.0" height="90.2" rx="2" fill="#0c8b82"><title>2021-10: 1,029,821.05</title></rect>
+<rect x="836.0" y="430.7" width="29.0" height="99.3" rx="2" fill="#0c8b82"><title>2021-11: 1,133,913.05</title></rect>
+<rect x="870.0" y="386.8" width="29.0" height="143.2" rx="2" fill="#0c8b82"><title>2021-12: 1,635,308.80</title></rect>
+<rect x="904.0" y="418.4" width="29.0" height="111.6" rx="2" fill="#0c8b82"><title>2022-01: 1,274,378.67</title></rect>
+<text x="904.0" y="553" fill="#52677e" font-family="Arial,sans-serif" font-size="12">2022-01</text>
+<rect x="938.0" y="412.7" width="29.0" height="117.3" rx="2" fill="#0c8b82"><title>2022-02: 1,339,241.29</title></rect>
+<rect x="972.0" y="403.1" width="29.0" height="126.9" rx="2" fill="#0c8b82"><title>2022-03: 1,448,596.12</title></rect>
+<rect x="1006.0" y="396.2" width="29.0" height="133.8" rx="2" fill="#0c8b82"><title>2022-04: 1,527,813.72</title></rect>
+<rect x="1040.0" y="375.1" width="29.0" height="154.9" rx="2" fill="#0c8b82"><title>2022-05: 1,768,432.51</title></rect>
+<rect x="1074.0" y="370.0" width="29.0" height="160.0" rx="2" fill="#0c8b82"><title>2022-06: 1,826,987.14</title></rect>
+<text x="1074.0" y="553" fill="#52677e" font-family="Arial,sans-serif" font-size="12">2022-06</text>
+<text x="72" y="365" fill="#52677e" font-family="Arial,sans-serif" font-size="13">Peak month: 2022-06 · 1,826,987 revenue units</text>
+<text x="48" y="617" fill="#10273e" font-family="Arial,sans-serif" font-size="14">Static analysis of the imported model · Python recomputation · All dates, no report filters</text>
+<text x="48" y="644" fill="#52677e" font-family="Arial,sans-serif" font-size="13">*Revenue less product cost; not net profit. Monetary figures use the model’s units.</text>
+<text x="48" y="669" fill="#52677e" font-family="Arial,sans-serif" font-size="13">This graphic is not a Power BI screenshot. Interactive reports and validation notes are linked below.</text>
+</svg>

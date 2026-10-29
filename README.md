@@ -1,50 +1,63 @@
-# AdventureWorks Sales & Business Performance Analysis
+# AdventureWorks | Power BI Analytics
 
-**Power BI portfolio project · Sales & customer analytics**
+Sales, customers & scenario analysis. A portfolio project by **Moamen Taha Abuzied**.
 
-[Download the Power BI report](./adventure.pbix) · [View Maven Market Retail Analysis](https://github.com/moamenabden7-max/Maven-Market-PowerBI)
+[Download report](./adventure.pbix) · [Model & DAX](docs/MODEL.md) · [Quality review](docs/QUALITY_REVIEW.md) · [Desktop finishing steps](docs/DESKTOP_FINISH.md)
 
-An interactive Power BI report using the AdventureWorks dataset to explore revenue, profit, orders, returns, products, and customer segments.
+![Static analysis summary, recomputed from the imported data](assets/analysis-summary.svg)
 
-## Business questions
+## Business focus
 
-- How do revenue, profit, orders, and returns change over time?
-- Which product categories and individual products drive sales?
-- How do customer segments and territories contribute to performance?
-- How do adjusted price and quantity assumptions affect revenue, cost, and profit?
+Explore sales performance, product profitability, customer activity and the impact of price and quantity assumptions.
 
-## Report pages
+## Report tour
 
-- **Overview:** revenue, profit, orders, and return rate cards; monthly trends and comparisons with the prior month; category and product breakdowns; year and continent filters.
-- **Products:** target gauges for revenue and profit, return-rate trends, adjusted profit, and product selection.
-- **Customers:** customer trends and segment breakdowns, including gender and country, plus a customer-level matrix.
-- **Supporting pages:** a KPI collection, a scenario gap view, and a report tooltip.
+- **Sales overview** — revenue, profit, orders, return rate and monthly comparisons.
+- **Products** — product performance, targets and adjusted-profit scenarios.
+- **Customers** — customer activity, segments and customer-level measures.
+- **Supporting pages** — KPIs, scenario gaps and report tooltip.
 
-## Model and measures
+## Data snapshot
 
-The report references calendar, product, category, customer, and territory lookup tables. DAX measures used in the visuals include total revenue, cost, profit, orders, returns, return rate, profit margin, quantities sold, prior-month values, and target or adjusted values. The scenario page compares original and adjusted revenue, cost, and profit.
+| Metric | All imported data |
+| --- | ---: |
+| Dates | 2020-01-01–2022-06-30 |
+| Fact rows | 56,046 |
+| Units sold | 84,174 |
+| Revenue | 24,914,586.82 |
+| Product cost | 14,456,871.39 |
+| Gross profit (revenue − product cost) | 10,457,715.43 |
+| Gross margin | 41.97% |
+| Returned units / sold units | 2.17% |
 
-## How to open
+Order definition: 25,164 distinct order numbers.
 
-1. Open the [Power BI report file](./adventure.pbix) and select **Download raw file** on GitHub.
-2. Open the downloaded `.pbix` file with **Power BI Desktop**.
-3. Explore the report pages and their filters.
+These numbers were independently recomputed from the embedded tables using Python. They are **not DAX-engine results** and do not reproduce saved report filters. Amounts use the model's monetary units; profit here excludes operating expenses. [Evidence and source-file hash](docs/audit-results.json).
 
-The report contains an embedded data model. Refreshing may require updated source settings and access to the original data files; those source files are not included in this repository.
+## Open and explore
 
-## Tools
+1. Open the [PBIX file](./adventure.pbix) and choose **Download raw file** on GitHub.
+2. Open it in Power BI Desktop and explore the pages and slicers.
+3. To refresh, obtain the original source files and update the local source paths. Those source files are not distributed here.
 
-Power BI · DAX
+## Technical work
 
-## Repository contents
+- Power BI report design and interactive filtering.
+- DAX measures for revenue, product cost, profit, returns and prior-month comparisons.
+- Price/quantity scenario measures and customer/product analysis.
+- A reproducible Python audit of key coverage, calendar continuity and aggregate arithmetic.
 
-- `README.md` — project summary and report guide.
-- `adventure.pbix` — Power BI report and embedded model.
+## Validation and improvements
 
-## Validation scope
+The current PBIX is preserved. The repository includes a [specific quality review](docs/QUALITY_REVIEW.md), [proposed measure fixes](improvements/measure-fixes.dax), a [report theme](improvements/portfolio-theme.json), and a PBIR polishing script. **These model/report fixes still require application and verification in Power BI Desktop.**
 
-The existing project documentation records a check of report layout and field references. Numerical findings and data refresh have not been independently validated.
+Reproduce the audit locally:
 
-## Author
+```bash
+python -m pip install -r requirements.txt
+python tools/audit_model.py "adventure.pbix" --output audit-results.json
+```
 
-Moamen Taha Abuzied · [LinkedIn](https://www.linkedin.com/in/moamen-taha-data-analyst/)
+## More work
+
+[Maven Market retail analysis](https://github.com/moamenabden7-max/Maven-Market-PowerBI) · [LinkedIn](https://www.linkedin.com/in/moamen-taha-data-analyst/)

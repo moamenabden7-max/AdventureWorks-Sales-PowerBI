@@ -1,0 +1,18 @@
+// PROPOSED REPLACEMENTS — NOT APPLIED TO THE PBIX.
+// In Power BI Desktop, select each EXISTING measure and replace its formula.
+// This preserves its identity and report references. Do not paste all definitions
+// into one formula bar. Validate each measure and save to a new PBIX copy.
+
+Returns Rate = DIVIDE([Quatity Returns], [Quantity Sold])
+
+Profit margin = DIVIDE([profit], [Total Revenue])
+
+LM Profit =
+    CALCULATE([profit], DATEADD('Calendar Lookup'[Date], -1, MONTH))
+
+// Assumption: use the same quantity parameter used by Adjust Revenue and Adjust cost.
+adjudst average quantity sold =
+    [Average Quantity Sold] * (1 + 'Qty sold selection'[Qty sold selection Value])
+
+// NEW measure. Use for gauge maximum; Target Orders belongs on the target marker.
+Orders Gauge Maximum = MAX([Total orders], [Target Orders]) * 1.2
