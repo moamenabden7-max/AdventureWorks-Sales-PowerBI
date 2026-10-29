@@ -1,0 +1,47 @@
+table 'Parameter 4'
+	lineageTag: e186ef49-1331-4038-a853-4cbafbefa0b6
+
+	column Parameter
+		lineageTag: 725bf76b-07cf-440d-8d45-693746c2d07b
+		summarizeBy: none
+		sourceColumn: [Value1]
+		sortByColumn: 'Parameter Order'
+
+		relatedColumnDetails
+			groupByColumn: 'Parameter Fields'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Parameter Fields'
+		isHidden
+		lineageTag: 0f6845ba-2e89-43e0-b9dc-9acffc1a1acf
+		summarizeBy: none
+		sourceColumn: [Value2]
+		sortByColumn: 'Parameter Order'
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 3,
+				  "kind": 2
+				}
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Parameter Order'
+		isHidden
+		formatString: 0
+		lineageTag: 7d920520-eb16-418d-88c1-36497b93a865
+		summarizeBy: sum
+		sourceColumn: [Value3]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Parameter 4' = calculated
+		mode: import
+		source =
+				{
+				    ("Year", NAMEOF('Calendar Lookup'[Year]), 0)
+				}
+
+	annotation PBI_Id = fc11aeaaa8a74d548c80416ff9e1aa7b
+

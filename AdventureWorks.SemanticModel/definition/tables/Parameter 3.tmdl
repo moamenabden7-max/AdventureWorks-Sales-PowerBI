@@ -1,0 +1,47 @@
+table 'Parameter 3'
+	lineageTag: a23c761c-8bf2-4f81-b548-b2c62e575e47
+
+	column Parameter
+		lineageTag: 400f0867-a3be-406d-9743-6bde1404ed22
+		summarizeBy: none
+		sourceColumn: [Value1]
+		sortByColumn: 'Parameter Order'
+
+		relatedColumnDetails
+			groupByColumn: 'Parameter Fields'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Parameter Fields'
+		isHidden
+		lineageTag: 5c0fc14f-d802-457b-a1b0-c74f33e5e493
+		summarizeBy: none
+		sourceColumn: [Value2]
+		sortByColumn: 'Parameter Order'
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 3,
+				  "kind": 2
+				}
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Parameter Order'
+		isHidden
+		formatString: 0
+		lineageTag: d5a990fa-aba2-4b52-a77d-1c50a265acc3
+		summarizeBy: sum
+		sourceColumn: [Value3]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Parameter 3' = calculated
+		mode: import
+		source =
+				{
+				    ("Start of Month", NAMEOF('Calendar Lookup'[Start of Month]), 0)
+				}
+
+	annotation PBI_Id = da6a07585da44de09aa2fe86d14a7a11
+

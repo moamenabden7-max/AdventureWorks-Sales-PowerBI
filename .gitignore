@@ -4,3 +4,7 @@ __pycache__/
 *.backup-*/
 .pbi/
 *.pbix.tmp
+
+
+# Keep table-level snapshots private.
+Data/

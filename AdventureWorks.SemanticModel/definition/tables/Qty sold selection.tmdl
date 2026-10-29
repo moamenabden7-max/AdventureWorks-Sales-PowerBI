@@ -1,0 +1,29 @@
+table 'Qty sold selection'
+	lineageTag: 120fd334-e08b-4f34-a2e4-ef563f25652e
+
+	measure 'Qty sold selection Value' = SELECTEDVALUE('Qty sold selection'[Qty sold selection], 0)
+		lineageTag: 691c2f2f-7fc9-4318-ac0b-a8966eac4373
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Qty sold selection'
+		formatString: 0%
+		lineageTag: 8e35434c-a53f-4ec8-86d9-ac80e844ea86
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'Qty sold selection' = calculated
+		mode: import
+		source = GENERATESERIES(-1, 1, 0.05)
+
+	annotation PBI_Id = d7f9e1dea15c4514ab967a7478023e8d
+

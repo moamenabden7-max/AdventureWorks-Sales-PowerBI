@@ -1,0 +1,39 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation PBI_QueryOrder = ["DataFolder", "Returns Data", "Product Categories Lookup", "Customer Lookup", "Calendar Lookup", "sales", "Product Lookup", "Territory Lookup", "Product Subcategories Lookup"]
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table sales
+ref table DateTableTemplate_ad85ebb7-e256-48bf-b216-d95f811da0e9
+ref table LocalDateTable_0062fa73-0602-4eb7-924c-81e58e23daa8
+ref table 'Product Categories Lookup'
+ref table 'Returns Data'
+ref table 'Calendar Lookup'
+ref table LocalDateTable_34c5dd08-855c-43f7-935a-4bd7948d3b44
+ref table LocalDateTable_565b0980-b451-4447-b8b8-0164282485a4
+ref table 'Product Lookup'
+ref table 'Territory Lookup'
+ref table 'Customer Lookup'
+ref table LocalDateTable_e440685d-5a4b-41c4-aa5c-76c621b225ee
+ref table 'Product Subcategories Lookup'
+ref table 'all data'
+ref table 'Price selection'
+ref table 'Qty sold selection'
+ref table Parameter
+ref table LocalDateTable_7f319c9a-0a0c-4bf4-a67f-0593e159d0c0
+ref table 'Qty Sold Selection '
+ref table 'Parameter 2'
+ref table 'Parameter 3'
+ref table 'Parameter 4'
+
+ref cultureInfo en-US
+

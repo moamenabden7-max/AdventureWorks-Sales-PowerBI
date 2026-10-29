@@ -1,0 +1,117 @@
+table 'Customer Lookup'
+	lineageTag: 07ec9a73-ab8d-4a36-a519-143ef1100d79
+
+	column CustomerKey
+		dataType: int64
+		formatString: 0
+		lineageTag: a4dc4d47-a444-404f-a9e7-cc48a869d25b
+		summarizeBy: none
+		sourceColumn: CustomerKey
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'full name'
+		dataType: string
+		lineageTag: 44e0d342-93c8-41c7-abee-07dfccc39197
+		summarizeBy: none
+		sourceColumn: full name
+
+		annotation SummarizationSetBy = Automatic
+
+	column BirthDate
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 4ff39a3e-2a09-4390-965b-d46beccbb4ff
+		summarizeBy: none
+		sourceColumn: BirthDate
+
+		variation Variation
+			isDefault
+			relationship: 180944a2-ebcb-4c13-8128-b6385a0f5e50
+			defaultHierarchy: LocalDateTable_e440685d-5a4b-41c4-aa5c-76c621b225ee.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column MaritalStatus
+		dataType: string
+		lineageTag: 8824a5a3-b378-4347-9e28-de633a788aca
+		summarizeBy: none
+		sourceColumn: MaritalStatus
+
+		annotation SummarizationSetBy = Automatic
+
+	column Gender
+		dataType: string
+		lineageTag: 2da67be3-6fdf-436f-8247-f43a954e058e
+		summarizeBy: none
+		sourceColumn: Gender
+
+		annotation SummarizationSetBy = Automatic
+
+	column EmailAddress
+		dataType: string
+		lineageTag: 5cc41048-8700-4f56-aa6d-481b38c93f12
+		summarizeBy: none
+		sourceColumn: EmailAddress
+
+		annotation SummarizationSetBy = Automatic
+
+	column AnnualIncome
+		dataType: int64
+		formatString: 0
+		lineageTag: 78f5082f-b016-4a08-85ea-a785838e2755
+		summarizeBy: sum
+		sourceColumn: AnnualIncome
+
+		annotation SummarizationSetBy = Automatic
+
+	column TotalChildren
+		dataType: int64
+		formatString: 0
+		lineageTag: 8c20ae88-4a04-4fdd-af62-76d728dd7145
+		summarizeBy: sum
+		sourceColumn: TotalChildren
+
+		annotation SummarizationSetBy = Automatic
+
+	column EducationLevel
+		dataType: string
+		lineageTag: 43e3573e-d983-4b9e-8ca9-bbfca485fb2c
+		summarizeBy: none
+		sourceColumn: EducationLevel
+
+		annotation SummarizationSetBy = Automatic
+
+	column Occupation
+		dataType: string
+		lineageTag: 7278261d-de5a-485b-97b7-2109b93f270e
+		summarizeBy: none
+		sourceColumn: Occupation
+
+		annotation SummarizationSetBy = Automatic
+
+	column HomeOwner
+		dataType: string
+		lineageTag: 6ab7166a-7fc7-4d3a-abf6-c2611ecbd9e1
+		summarizeBy: none
+		sourceColumn: HomeOwner
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Customer Lookup' = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(Binary.Decompress(File.Contents(DataFolder & "/Customer Lookup.csv.gz"), Compression.GZip), [Delimiter=",", Columns=11, Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    Headers = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    Typed = Table.TransformColumnTypes(Headers, {{"CustomerKey", Int64.Type}, {"full name", type text}, {"BirthDate", type datetime}, {"MaritalStatus", type text}, {"Gender", type text}, {"EmailAddress", type text}, {"AnnualIncome", Int64.Type}, {"TotalChildren", Int64.Type}, {"EducationLevel", type text}, {"Occupation", type text}, {"HomeOwner", type text}}, "en-US"),
+				    ValidCustomers = Table.SelectRows(Typed, each [CustomerKey] <> null)
+				in
+				    ValidCustomers
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

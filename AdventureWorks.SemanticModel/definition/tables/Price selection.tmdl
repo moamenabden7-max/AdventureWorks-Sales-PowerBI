@@ -1,0 +1,29 @@
+table 'Price selection'
+	lineageTag: ef1949f1-43c6-4bb1-a00b-5d496947c4db
+
+	measure 'Price selection Value' = SELECTEDVALUE('Price selection'[Price selection], 0)
+		lineageTag: 0d7e3ac6-0706-404a-8b6b-08d9acb7e097
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column 'Price selection'
+		formatString: 0%
+		lineageTag: 47199a13-9051-4844-9f46-4eee2d5ef1a2
+		summarizeBy: none
+		sourceColumn: [Value]
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 0
+				}
+
+		annotation SummarizationSetBy = User
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	partition 'Price selection' = calculated
+		mode: import
+		source = GENERATESERIES(-1, 1, 0.05)
+
+	annotation PBI_Id = e55f05c8155d489bbb523af67bee9ca6
+

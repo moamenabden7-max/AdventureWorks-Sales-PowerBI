@@ -1,0 +1,54 @@
+table 'Parameter 2'
+	lineageTag: dffb419f-9b1b-4d97-9ab7-fafb94f82ad2
+
+	column Parameter
+		lineageTag: 6b93012b-8d6e-4a00-9b71-cf9bc9a576f4
+		summarizeBy: none
+		sourceColumn: [Value1]
+		sortByColumn: 'Parameter Order'
+
+		relatedColumnDetails
+			groupByColumn: 'Parameter Fields'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Parameter Fields'
+		isHidden
+		lineageTag: 5d413343-f346-4327-a81a-dcd3a0585727
+		summarizeBy: none
+		sourceColumn: [Value2]
+		sortByColumn: 'Parameter Order'
+
+		extendedProperty ParameterMetadata =
+				{
+				  "version": 3,
+				  "kind": 2
+				}
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Parameter Order'
+		isHidden
+		formatString: 0
+		lineageTag: cdcb19d5-3978-4e9b-b257-f9c58df3d6b5
+		summarizeBy: sum
+		sourceColumn: [Value3]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Parameter 2' = calculated
+		mode: import
+		source =
+				{
+				    ("Total orders", NAMEOF('all data'[Total orders]), 0),
+				    ("Total Revenue", NAMEOF('all data'[Total Revenue]), 1),
+				    ("Total Cost", NAMEOF('all data'[Total Cost]), 2),
+				    ("Quantity Sold", NAMEOF('all data'[Quantity Sold]), 3),
+				    ("Total Returns", NAMEOF('all data'[Total Returns]), 4),
+				    ("Returns Rate", NAMEOF('all data'[Returns Rate]), 5),
+				    ("Total Customers", NAMEOF('all data'[Total Customers]), 6),
+				    ("active customer", NAMEOF('all data'[active customer]), 7)
+				}
+
+	annotation PBI_Id = 7dfce89c9ecf4c42b653b66bc755a9d5
+

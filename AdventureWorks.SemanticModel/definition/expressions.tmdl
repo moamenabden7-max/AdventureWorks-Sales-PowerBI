@@ -1,0 +1,4 @@
+expression DataFolder = "C:\AdventureWorks\Data" meta [IsParameterQuery=true, Type="Text", IsParameterQueryRequired=true]
+	lineageTag: 5b1ce53f-bcc6-46d8-bc7a-4f40e8f350df
+
+	annotation PBI_ResultType = Text

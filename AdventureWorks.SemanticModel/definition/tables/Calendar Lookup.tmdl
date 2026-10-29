@@ -1,0 +1,108 @@
+table 'Calendar Lookup'
+	lineageTag: 16121870-5b1d-49a2-948c-0a4e8767265b
+
+	column Date
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 1785a98e-a153-41a9-9edb-e092b412106b
+		summarizeBy: none
+		sourceColumn: Date
+
+		variation Variation
+			isDefault
+			relationship: 685e5611-948d-48f9-9e3d-93d4db6e0cbc
+			defaultHierarchy: LocalDateTable_34c5dd08-855c-43f7-935a-4bd7948d3b44.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column Year
+		dataType: int64
+		formatString: 0
+		lineageTag: 4ae4db5c-0702-4ef1-a17f-e443fdebbdec
+		summarizeBy: sum
+		sourceColumn: Year
+
+		annotation SummarizationSetBy = Automatic
+
+	column Month
+		dataType: int64
+		formatString: 0
+		lineageTag: c4ef4c9c-5949-487f-b420-c6954f5fb428
+		summarizeBy: sum
+		sourceColumn: Month
+
+		annotation SummarizationSetBy = Automatic
+
+	column Day
+		dataType: int64
+		formatString: 0
+		lineageTag: ff1756b7-f1cb-4e74-b948-eab26dde7ce0
+		summarizeBy: sum
+		sourceColumn: Day
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Start of Month'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: fec97749-f9b3-4369-a5a9-c9e94a556413
+		summarizeBy: none
+		sourceColumn: Start of Month
+
+		variation Variation
+			isDefault
+			relationship: 3f06ac0d-0ab2-42cf-b1f0-492f5ff1627a
+			defaultHierarchy: LocalDateTable_565b0980-b451-4447-b8b8-0164282485a4.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Month Name'
+		dataType: string
+		lineageTag: 5fd1e7cc-4626-4373-9302-f78844cd7c33
+		summarizeBy: none
+		sourceColumn: Month Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Day Name'
+		dataType: string
+		lineageTag: 5c13d9e7-3981-49c9-865b-6a916ad1be5f
+		summarizeBy: none
+		sourceColumn: Day Name
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Start of Week'
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: ddaf6463-714b-4644-84f6-cf6be3219261
+		summarizeBy: none
+		sourceColumn: Start of Week
+
+		variation Variation
+			isDefault
+			relationship: ce5df9da-d94c-4314-b19e-3a2d14aac5af
+			defaultHierarchy: LocalDateTable_7f319c9a-0a0c-4bf4-a67f-0593e159d0c0.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	partition 'Calendar Lookup' = m
+		mode: import
+		source =
+				let
+				    Source = Csv.Document(Binary.Decompress(File.Contents(DataFolder & "/Calendar Lookup.csv.gz"), Compression.GZip), [Delimiter=",", Columns=8, Encoding=65001, QuoteStyle=QuoteStyle.Csv]),
+				    Headers = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),
+				    Typed = Table.TransformColumnTypes(Headers, {{"Date", type datetime}, {"Year", Int64.Type}, {"Month", Int64.Type}, {"Day", Int64.Type}, {"Start of Month", type datetime}, {"Month Name", type text}, {"Day Name", type text}, {"Start of Week", type datetime}}, "en-US")
+				in
+				    Typed
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+

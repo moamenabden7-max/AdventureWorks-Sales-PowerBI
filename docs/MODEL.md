@@ -1,319 +1,287 @@
-# Model and measure reference
+# Revised model and measures
 
-Extracted from the current PBIX. Measure names below are the existing names, including spelling inconsistencies. Formulas are documented as found, not endorsed as validated results.
+Source of truth: AdventureWorks.SemanticModel/definition. This reference describes the revised PBIP, not the legacy PBIX.
 
-## Relationships
+Customers with null keys are filtered at refresh; valid keys are unique and all sales keys match. Customer filters flow to sales through a one-to-many relationship. Other business relationships are preserved.
 
-| From | To | Cardinality | Filter | Active |
-| --- | --- | --- | --- | --- |
-| sales[OrderDate] | Calendar Lookup[Date] | M:1 | Single | Yes |
-| Returns Data[ProductKey] | Product Lookup[ProductKey] | M:1 | Single | Yes |
-| Product Lookup[ProductSubcategoryKey] | Product Subcategories Lookup[ProductSubcategoryKey] | M:1 | Single | Yes |
-| Product Subcategories Lookup[ProductCategoryKey] | Product Categories Lookup[ProductCategoryKey] | M:1 | Single | Yes |
-| Returns Data[TerritoryKey] | Territory Lookup[SalesTerritoryKey] | M:1 | Single | Yes |
-| sales[TerritoryKey] | Territory Lookup[SalesTerritoryKey] | M:1 | Single | Yes |
-| Customer Lookup[CustomerKey] | sales[CustomerKey] | M:M | Both | Yes |
-| sales[ProductKey] | Product Lookup[ProductKey] | M:1 | Single | Yes |
-| Returns Data[ReturnDate] | Calendar Lookup[Date] | M:1 | Single | Yes |
+DataFolder selects the local Data folder. Imported tables refresh from compressed snapshots; they are not the original raw source files.
 
-## Measures
+## Measures in all data
 
-### all data · Min Retail Price
+### Min Retail Price
 
 ```dax
 MIN(
- 'Product Lookup'[ProductPrice]
-)
+			 'Product Lookup'[ProductPrice]
+			)
 ```
 
-### all data · Quantity Sold
+### Quantity Sold
 
 ```dax
 SUM(
- 'sales'[OrderQuantity]
- )
+			 'sales'[OrderQuantity]
+			 )
 ```
 
-### all data · Quatity Returns
+### Quatity Returns
 
 ```dax
 SUM('Returns Data'[ReturnQuantity])
 ```
 
-### all data · Total Customers
+### Total Customers
 
 ```dax
-
 COUNT('Customer Lookup'[CustomerKey])
 ```
 
-### all data · Total orders
+### Total orders
 
 ```dax
 DISTINCTCOUNT(
-    sales[OrderNumber])
+			    sales[OrderNumber])
 ```
 
-### all data · Returns Rate
+### Returns Rate
 
 ```dax
-
-[Quatity Returns]/[Quantity Sold]
+DIVIDE([Quatity Returns], [Quantity Sold])
 ```
 
-### all data · ALL
+### ALL
 
 ```dax
 CALCULATE(
-    [Quantity Sold])
+			    [Quantity Sold])
 ```
 
-### all data · Measure
+### Measure
 
 ```dax
 CALCULATE([Quantity Sold],
-ALL(sales))
+			ALL(sales))
 ```
 
-### all data · active customer
+### active customer
 
 ```dax
 DISTINCTCOUNT(sales[CustomerKey])
 ```
 
-### all data · max retail price
+### max retail price
 
 ```dax
 MAX('Product Lookup'[ProductPrice])
 ```
 
-### all data · Measure 2
+### Measure 2
 
 ```dax
-// Empty expression in the source model
+BLANK()
 ```
 
-### all data · Aversge Retail Price
+### Aversge Retail Price
 
 ```dax
 AVERAGE(
-    'Product Lookup'[ProductPrice])
+			    'Product Lookup'[ProductPrice])
 ```
 
-### all data · Total Returns
+### Total Returns
 
 ```dax
 COUNTROWS(
-    'Returns Data'
-)
+			    'Returns Data'
+			)
 ```
 
-### all data · Total Cost
+### Total Cost
 
 ```dax
-
-    SUMX(sales,
-    sales[OrderQuantity]  * RELATED('Product Lookup'[ProductCost]))
-```
-
-### all data · Total Revenue
-
-```dax
-
 SUMX(sales,
-RELATED('Product Lookup'[ProductPrice]) * sales[OrderQuantity])
+			    sales[OrderQuantity]  * RELATED('Product Lookup'[ProductCost]))
 ```
 
-### all data · profit
+### Total Revenue
 
 ```dax
-
-    [Total Revenue] - [Total Cost]
+SUMX(sales,
+			RELATED('Product Lookup'[ProductPrice]) * sales[OrderQuantity])
 ```
 
-### all data · Profit margin
+### profit
 
 ```dax
-
-    [profit] / [Total Revenue]
+[Total Revenue] - [Total Cost]
 ```
 
-### all data · LM Profit
+### Profit margin
 
 ```dax
-CALCULATE(
- [profit],
- DATEADD(
- 'Calendar Lookup'[Date].[Date],
- -1,
- MONTH
- )
-)
+DIVIDE([profit], [Total Revenue])
 ```
 
-### all data · LM Revenue
+### LM Profit
+
+```dax
+CALCULATE([profit], DATEADD('Calendar Lookup'[Date], -1, MONTH))
+```
+
+### LM Revenue
 
 ```dax
 CALCULATE(
- [Total Revenue],
- DATEADD(
- 'Calendar Lookup'[Date],
- -1,
- MONTH
- )
-)
+			 [Total Revenue],
+			 DATEADD(
+			 'Calendar Lookup'[Date],
+			 -1,
+			 MONTH
+			 )
+			)
 ```
 
-### all data · LM Return
+### LM Return
 
 ```dax
 CALCULATE(
-    [Total Returns],
-    DATEADD('Calendar Lookup'[Date],
-    -1,
-    MONTH
-    )
-)
+			    [Total Returns],
+			    DATEADD('Calendar Lookup'[Date],
+			    -1,
+			    MONTH
+			    )
+			)
 ```
 
-### all data · lm orders
+### lm orders
 
 ```dax
-
 CALCULATE(
-    [Total orders],
-    DATEADD('Calendar Lookup'[Date],
-    -1,
-    MONTH
-    ))
+			    [Total orders],
+			    DATEADD('Calendar Lookup'[Date],
+			    -1,
+			    MONTH
+			    ))
 ```
 
-### all data · Adjust Revenue
+### Adjust Revenue
 
 ```dax
 SUMX(
-     sales,
-        sales[OrderQuantity] * (1+'Qty sold selection'[Qty sold selection Value])
-        *
-        RELATED('Product Lookup'[ProductPrice])*(1+'Price selection'[Price selection Value])
-)
+			     sales,
+			        sales[OrderQuantity] * (1+'Qty sold selection'[Qty sold selection Value])
+			        *
+			        RELATED('Product Lookup'[ProductPrice])*(1+'Price selection'[Price selection Value])
+			)
 ```
 
-### Price selection · Price selection Value
-
-```dax
-SELECTEDVALUE('Price selection'[Price selection], 0)
-```
-
-### Qty sold selection · Qty sold selection Value
-
-```dax
-SELECTEDVALUE('Qty sold selection'[Qty sold selection], 0)
-```
-
-### all data · Adjust cost
+### Adjust cost
 
 ```dax
 SUMX(
-    sales,
-    RELATED('Product Lookup'[ProductCost])  * sales[OrderQuantity] * (1+'Qty sold selection'[Qty sold selection Value]))
+			    sales,
+			    RELATED('Product Lookup'[ProductCost])  * sales[OrderQuantity] * (1+'Qty sold selection'[Qty sold selection Value]))
 ```
 
-### all data · Adjust Profit
+### Adjust Profit
 
 ```dax
 'all data'[Adjust Revenue]- [Adjust cost]
 ```
 
-### all data · gap cost
+### gap cost
 
 ```dax
 [Adjust cost]- [Total Cost]
 ```
 
-### all data · gap revenue
+### gap revenue
 
 ```dax
 [Adjust Revenue] - [Total Revenue]
 ```
 
-### all data · gap profit
+### gap profit
 
 ```dax
 [Adjust Profit] - [profit]
 ```
 
-### all data · Target Orders
+### Target Orders
 
 ```dax
-
 [lm orders] * 1.1
 ```
 
-### all data · Target Revenue
+### Target Revenue
 
 ```dax
 [LM Revenue] * 1.1
 ```
 
-### all data · Target Profit
+### Target Profit
 
 ```dax
-
-[LM Profit] * 1.1 
+[LM Profit] * 1.1
 ```
 
-### all data · Gap orders
+### Gap orders
 
 ```dax
-
 [Total orders] - [Target Orders]
 ```
 
-### all data · Measure 3
+### Measure 3
 
 ```dax
-// Empty expression in the source model
+BLANK()
 ```
 
-### all data · Gap orders parametre
+### Gap orders parametre
 
 ```dax
-
 [Total orders] - [Target Orders]
 ```
 
-### all data · Gap Revenue Parametre
+### Gap Revenue Parametre
 
 ```dax
-
 [Total Revenue]- [Target Revenue]
 ```
 
-### all data · Gap Profit Parametre
+### Gap Profit Parametre
 
 ```dax
-
 [profit] - [Target Profit]
 ```
 
-### Qty Sold Selection  · Qty Sold Selection  Value
+### Average Quantity Sold
 
 ```dax
-SELECTEDVALUE('Qty Sold Selection '[Qty Sold Selection ], 0)
+average(
+			                        sales[OrderQuantity])
 ```
 
-### all data · Average Quantity Sold
+### adjudst average quantity sold
 
 ```dax
-
-                     average(
-                        sales[OrderQuantity])
+[Average Quantity Sold] * (1 + 'Qty sold selection'[Qty sold selection Value])
 ```
 
-### all data · adjudst average quantity sold
+### Orders Gauge Maximum
 
 ```dax
+MAX(1, MAX([Total orders], [Target Orders]) * 1.2)
+```
 
-                        [Average Quantity Sold] * (1+qu)
+### Revenue Gauge Maximum
+
+```dax
+MAX(1, MAX([Total Revenue], [Target Revenue]) * 1.2)
+```
+
+### Profit Gauge Maximum
+
+```dax
+MAX(1, MAX([profit], [Target Profit]) * 1.2)
 ```

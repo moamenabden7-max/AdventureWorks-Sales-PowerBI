@@ -1,0 +1,275 @@
+table 'all data'
+	lineageTag: c156c8cd-fff1-479b-a25a-9a2f964898ed
+
+	measure 'Min Retail Price' =
+			MIN(
+			 'Product Lookup'[ProductPrice]
+			)
+		lineageTag: 4c83f885-080f-4e44-8001-90763a1cc9e5
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Quantity Sold' =
+			SUM(
+			 'sales'[OrderQuantity]
+			 )
+		formatString: 0
+		lineageTag: 31ac9a50-80b2-4183-9593-95670580d460
+
+	measure 'Quatity Returns' = SUM('Returns Data'[ReturnQuantity])
+		formatString: 0
+		lineageTag: cd98511f-c6b9-4de0-8683-925dccb7a261
+
+	measure 'Total Customers' =
+			
+			COUNT('Customer Lookup'[CustomerKey])
+		formatString: 0
+		lineageTag: 4a4ad564-131b-45fc-810e-712c39beb036
+
+	measure 'Total orders' =
+			DISTINCTCOUNT(
+			    sales[OrderNumber])
+		formatString: #,0
+		lineageTag: 4f39ad8e-7d0a-4c13-b935-47723b515887
+
+	measure 'Returns Rate' =
+			DIVIDE([Quatity Returns], [Quantity Sold])
+		formatString: #,0.00%;-#,0.00%;#,0.00%
+		lineageTag: b6d4985f-1cde-4c05-9a2f-70ca595ec458
+
+	measure ALL =
+			CALCULATE(
+			    [Quantity Sold])
+		formatString: 0
+		lineageTag: 7b339f86-0372-478b-b939-fc3c081c6413
+
+	measure Measure =
+			CALCULATE([Quantity Sold],
+			ALL(sales))
+		formatString: 0
+		lineageTag: 7e3976f7-0183-4acd-ae71-570bb8a829b2
+
+	measure 'active customer' = DISTINCTCOUNT(sales[CustomerKey])
+		formatString: 0
+		lineageTag: aca1a509-0c60-4a71-a23a-99c81af4efaa
+
+	measure 'max retail price' = MAX('Product Lookup'[ProductPrice])
+		lineageTag: 3da5ea41-9f94-49b5-a258-d3f3434a2ba6
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Measure 2' = BLANK()
+		lineageTag: 362dc34b-1fa5-4611-9d9e-9d5cead34d3e
+
+		annotation 43dbc3e8-3a1c-4b6f-9923-b49ff7d6691c = True
+
+	measure 'Aversge Retail Price' =
+			AVERAGE(
+			    'Product Lookup'[ProductPrice])
+		lineageTag: c8cc5b03-5334-4ebe-862c-701ee6f8d9cb
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total Returns' =
+			COUNTROWS(
+			    'Returns Data'
+			)
+		formatString: #,0
+		lineageTag: 92d7e022-ab77-4ffe-ab28-4f871e7fa98f
+
+	measure 'Total Cost' = ```
+			
+			    SUMX(sales,
+			    sales[OrderQuantity]  * RELATED('Product Lookup'[ProductCost]))
+			```
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: 7ad7468f-3fd8-4d2e-b935-d2e3099d67f2
+
+	measure 'Total Revenue' =
+			
+			SUMX(sales,
+			RELATED('Product Lookup'[ProductPrice]) * sales[OrderQuantity])
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: 115b445c-48f0-4167-bb7d-cac6a6530c4e
+
+	measure profit = ```
+			
+			    [Total Revenue] - [Total Cost]
+			```
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: 2c1bbaad-7bcc-43ed-98d4-e42062bcc28c
+
+	measure 'Profit margin' =
+			DIVIDE([profit], [Total Revenue])
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: e095a6fb-4b3d-479b-b1f5-619cabd79d24
+
+	measure 'LM Profit' =
+			CALCULATE([profit], DATEADD('Calendar Lookup'[Date], -1, MONTH))
+		lineageTag: 178f8f26-1101-46a7-aeef-4fd6338c01da
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'LM Revenue' =
+			CALCULATE(
+			 [Total Revenue],
+			 DATEADD(
+			 'Calendar Lookup'[Date],
+			 -1,
+			 MONTH
+			 )
+			)
+		lineageTag: 50b5f3b5-1bc4-4dba-8d1b-8143e7982bae
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'LM Return' =
+			CALCULATE(
+			    [Total Returns],
+			    DATEADD('Calendar Lookup'[Date],
+			    -1,
+			    MONTH
+			    )
+			)
+		formatString: #,0
+		lineageTag: 7bd231b9-438b-4f5c-82d4-2cbbdc8a066b
+
+	measure 'lm orders' =
+			
+			CALCULATE(
+			    [Total orders],
+			    DATEADD('Calendar Lookup'[Date],
+			    -1,
+			    MONTH
+			    ))
+		formatString: #,0
+		lineageTag: ea41136c-1f92-4cf8-99b6-c4092c0397f3
+
+	measure 'Adjust Revenue' =
+			SUMX(
+			     sales,
+			        sales[OrderQuantity] * (1+'Qty sold selection'[Qty sold selection Value])
+			        *
+			        RELATED('Product Lookup'[ProductPrice])*(1+'Price selection'[Price selection Value])
+			)
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: 129f9bec-c851-4488-a3d8-468d5f4e4406
+
+	measure 'Adjust cost' =
+			SUMX(
+			    sales,
+			    RELATED('Product Lookup'[ProductCost])  * sales[OrderQuantity] * (1+'Qty sold selection'[Qty sold selection Value]))
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: adb7a427-3c91-4f32-a1fe-cee47ced957a
+
+	measure 'Adjust Profit' = 'all data'[Adjust Revenue]- [Adjust cost]
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: ef78ff05-3a21-4d72-be4b-baf38bc11e69
+
+	measure 'gap cost' = [Adjust cost]- [Total Cost]
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: f7e332b5-989a-4556-9bb2-c75b003bb25f
+
+	measure 'gap revenue' = [Adjust Revenue] - [Total Revenue]
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: 863a1f6b-9c57-473c-9dd1-89a27bb33a9a
+
+	measure 'gap profit' = [Adjust Profit] - [profit]
+		formatString: \$#,0;(\$#,0);\$#,0
+		lineageTag: 23c9a58d-6c09-445d-9d1e-ccaef89a29ca
+
+	measure 'Target Orders' =
+			
+			[lm orders] * 1.1
+		lineageTag: e0edda6c-b640-41f2-b07c-da7d12969168
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Target Revenue' = [LM Revenue] * 1.1
+		lineageTag: cb9e7efd-7c59-4479-ab0f-690cf9bc7ad7
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Target Profit' = ```
+			
+			[LM Profit] * 1.1 
+			```
+		lineageTag: 0b1de211-d8a8-4dec-9b3e-969815d65630
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Gap orders' =
+			
+			[Total orders] - [Target Orders]
+		lineageTag: e4e6a421-7bc3-46e4-b2de-b721117a358f
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Measure 3' = BLANK()
+		lineageTag: b697081f-b0f5-43bf-8714-a75de2316c6e
+
+		annotation 43dbc3e8-3a1c-4b6f-9923-b49ff7d6691c = True
+
+	measure 'Gap orders parametre' =
+			
+			[Total orders] - [Target Orders]
+		lineageTag: 5fbd1b75-def1-4280-8f2c-6a24ed6aa660
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Gap Revenue Parametre' =
+			
+			[Total Revenue]- [Target Revenue]
+		lineageTag: 8391aa23-8ed1-4a74-af50-09217dd51cf3
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Gap Profit Parametre' =
+			
+			[profit] - [Target Profit]
+		lineageTag: b2da804d-b6dd-4af1-8b06-b5dedf3def9b
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Average Quantity Sold' = ```
+			
+			                     average(
+			                        sales[OrderQuantity])
+			```
+		lineageTag: afe4867d-871a-47d7-b787-6fac1d98864c
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'adjudst average quantity sold' =
+			[Average Quantity Sold] * (1 + 'Qty sold selection'[Qty sold selection Value])
+		lineageTag: 840a5c8b-0de2-474c-bc56-8b6e86c540a3
+
+	measure 'Orders Gauge Maximum' = MAX(1, MAX([Total orders], [Target Orders]) * 1.2)
+		formatString: #,0
+		lineageTag: 8eba6627-320a-4478-83e8-597b124fe405
+
+	measure 'Revenue Gauge Maximum' = MAX(1, MAX([Total Revenue], [Target Revenue]) * 1.2)
+		formatString: #,0
+		lineageTag: f9f514ee-85de-407d-9925-75e9c31f7b91
+
+	measure 'Profit Gauge Maximum' = MAX(1, MAX([profit], [Target Profit]) * 1.2)
+		formatString: #,0
+		lineageTag: 8ea37022-9ef4-4b35-934e-5871e09285c1
+
+	column Column
+		formatString: 0
+		lineageTag: 71e4d673-168b-4636-a56f-b79eb02c5c4f
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Column]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'all data' = calculated
+		mode: import
+		source = Row("Column", BLANK())
+
+	annotation PBI_Id = 3da5794d6df340889557e131882995ab
+
+	annotation 436ba87b-9c83-4389-a31b-ebd06a36be98 = {"Expression":""}
+
