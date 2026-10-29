@@ -1,5 +1,9 @@
 # AdventureWorks Sales & Business Performance Analysis
 
+**Power BI portfolio project · Sales & customer analytics**
+
+[Download the Power BI report](./adventure.pbix) · [View Maven Market Retail Analysis](https://github.com/moamenabden7-max/Maven-Market-PowerBI)
+
 An interactive Power BI report using the AdventureWorks dataset to explore revenue, profit, orders, returns, products, and customer segments.
 
 ## Business questions
@@ -22,20 +26,24 @@ The report references calendar, product, category, customer, and territory looku
 
 ## How to open
 
-Download `adventure.pbix` and open it with Power BI Desktop. The report contains an embedded data model; refreshing may require updated source settings.
+1. Open the [Power BI report file](./adventure.pbix) and select **Download raw file** on GitHub.
+2. Open the downloaded `.pbix` file with **Power BI Desktop**.
+3. Explore the report pages and their filters.
+
+The report contains an embedded data model. Refreshing may require updated source settings and access to the original data files; those source files are not included in this repository.
 
 ## Tools
 
-Power BI · SQL · DAX
+Power BI · DAX
 
 ## Repository contents
 
 - `README.md` — project summary and report guide.
 - `adventure.pbix` — Power BI report and embedded model.
 
-Dashboard screenshots can be added once exported from Power BI Desktop.
+## Validation scope
 
-The visual layout and field references were checked from the report file. Numerical findings and refresh behavior have not been independently verified here.
+The existing project documentation records a check of report layout and field references. Numerical findings and data refresh have not been independently validated.
 
 ## Author
 
