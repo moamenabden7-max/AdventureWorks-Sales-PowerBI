@@ -1,26 +1,31 @@
-# Finish and verify in Power BI Desktop
+# Report implementation and verification
 
-The original PBIX has not been rewritten. Binary model edits and a guessed conversion to PBIP are deliberately avoided. The following is the remaining application workflow, not a completion claim.
+Status: outstanding work for the current `adventure.pbix`. Documentation changes do not apply fixes to the report.
 
-1. Open the PBIX and **Save As** a working copy. Capture the current KPI totals and active filters.
-2. Apply the formula replacements in [measure-fixes.dax](../improvements/measure-fixes.dax) one measure at a time. Quarantine the six null customer keys, verify uniqueness and fact-key coverage, then correct the customer relationship. Do not drop fact rows.
-3. Save as **Power BI Project (.pbip)** with the PBIR report format. Run the script against the exported **.Report** folder:
+## Prepare an editable copy
 
-```bash
-python tools/polish_pbir.py "path/to/Project.Report"
-```
+Open `adventure.pbix` in Power BI Desktop and save a working copy. Record baseline totals and active filters.
 
-The script makes a sibling backup first. It renames known pages, orders the business pages, sets the overview as the active page, and replaces the AdventureWorks margin donut with clustered bars when present. It does not alter DAX or the semantic model. It was structurally tested against the Maven PBIR definition; the AdventureWorks legacy report must first be converted by Desktop.
+To edit the project outside Desktop, save as Power BI Project (.pbip), using the PBIR report format. Keep the .pbip entry point and its .Report and .SemanticModel folders together. When sharing the project, ZIP these three items with their folder structure intact.
 
-4. Apply external changes/reopen in Desktop. Import [portfolio-theme.json](../improvements/portfolio-theme.json) from the Themes menu. Confirm contrast and alignment. Hide KPI Reference and Report Tooltip from ordinary navigation, while preserving tooltip/navigation references. Remove customer return rate from the customer matrix, and fix the orders gauge target/maximum.
-5. Check every page at 100% zoom, filters, reset buttons, tooltip/drillthrough behavior, target gauges and empty selections. At price and quantity changes of 0%, adjusted revenue/cost/profit should equal baseline and gaps should equal zero. At quantity −100%, adjusted quantities/revenue/cost should be zero. Test the quantity parameter actually used by the scenario page.
-6. Compare unfiltered totals against [audit-results.json](audit-results.json). Small numeric rounding differences can occur; investigate material differences rather than forcing a match. Test refresh separately using your source files.
-7. Export actual report pages to PNG or PDF, add them under assets/, and label them as Desktop exports. Save the verified PBIX and replace the current repository file only after successful reopening.
+## Apply fixes
 
-## References
+1. Review [MODEL.md](MODEL.md) and [QUALITY_REVIEW.md](QUALITY_REVIEW.md).
+2. Quarantine the six null customer-key records in Power Query, retaining rejected records for investigation. Check nonnull customer keys are unique and all sales customer keys still match. Then configure Customers (1) to Sales (*) with single-direction filtering.
+3. Replace the existing measures one at a time using [measure-fixes.dax](../improvements/measure-fixes.dax). Confirm the quantity parameter used by the scenario slicer before replacing the undefined `qu` reference.
+4. Remove customer-level return rate from the customer matrix: the returns fact has no customer key.
+5. Set Target Orders as the orders gauge target marker and Orders Gauge Maximum as its maximum.
+6. Replace the profit-margin-by-gender donut with a comparison bar chart, preserving its fields and filters.
+7. Use consistent page labels, open on Sales Overview, and preserve navigation/tooltip references when ordering or hiding helper pages. The [theme](../improvements/portfolio-theme.json) is optional.
 
-- [Microsoft: PBIR report folders and supported external editing](https://learn.microsoft.com/power-bi/developer/projects/projects-report)
-- [Microsoft: PBIP and Desktop conversion](https://learn.microsoft.com/power-bi/developer/projects/projects-overview)
-- [Microsoft: DIVIDE](https://learn.microsoft.com/dax/divide-function-dax)
+## Verify before replacing the download
 
-The image in the repository README is an independent data-derived analysis graphic, not a Desktop export.
+- Open every page and check slicers, navigation, tooltips and empty selections.
+- Check prior-month measures against explicit month selections.
+- At zero price and quantity adjustments, adjusted values must equal baseline values and gaps must be zero.
+- At a quantity adjustment of -100%, adjusted quantity, revenue and cost must be zero.
+- Compare unfiltered aggregates with [audit-results.json](audit-results.json), allowing for numeric rounding. The audit is Python recomputation, not DAX validation.
+- Test refresh with the original source files and configured local paths.
+- Reopen the saved PBIX before replacing the repository download. Export real report screenshots to assets/ after verification.
+
+Original source files are not included. The current summary graphic is not a Desktop export.

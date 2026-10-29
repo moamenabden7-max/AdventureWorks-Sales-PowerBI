@@ -2,7 +2,7 @@
 
 Sales, customers & scenario analysis. A portfolio project by **Moamen Taha Abuzied**.
 
-[Download report](./adventure.pbix) · [Model & DAX](docs/MODEL.md) · [Quality review](docs/QUALITY_REVIEW.md) · [Desktop finishing steps](docs/DESKTOP_FINISH.md)
+[Download report](./adventure.pbix) · [Model & DAX](docs/MODEL.md) · [Quality review](docs/QUALITY_REVIEW.md) · [Implementation checklist](docs/DESKTOP_FINISH.md)
 
 ![Static analysis summary, recomputed from the imported data](assets/analysis-summary.svg)
 
@@ -49,7 +49,20 @@ These numbers were independently recomputed from the embedded tables using Pytho
 
 ## Validation and improvements
 
-The current PBIX is preserved. The repository includes a [specific quality review](docs/QUALITY_REVIEW.md), [proposed measure fixes](improvements/measure-fixes.dax), a [report theme](improvements/portfolio-theme.json), and a PBIR polishing script. **These model/report fixes still require application and verification in Power BI Desktop.**
+The repository includes a [quality review](docs/QUALITY_REVIEW.md), [proposed measure fixes](improvements/measure-fixes.dax), an optional [report theme](improvements/portfolio-theme.json) and an [implementation checklist](docs/DESKTOP_FINISH.md).
+
+The review identifies a customer relationship that needs correction, an undefined `qu` reference in a scenario measure, and return-rate and gauge presentation issues. **These changes have not been applied to the PBIX.** The analysis graphic above is an independent aggregate summary, not a screenshot of the report.
+
+## Repository contents
+
+| Path | Purpose |
+| --- | --- |
+| `adventure.pbix` | Report with its imported model |
+| `assets/` | Analysis summary graphic |
+| `docs/` | Model reference, findings, audit evidence and implementation checklist |
+| `improvements/` | Proposed DAX changes and optional theme |
+| `tools/audit_model.py` | Read-only aggregate audit |
+| `requirements.txt` | Dependencies for the optional audit |
 
 Reproduce the audit locally:
 
