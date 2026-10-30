@@ -1,28 +1,47 @@
 # AdventureWorks | Power BI Analytics
 
-Sales, products, customers and scenario analysis by **Moamen Taha Abuzied**.
+Sales, product performance, customer insights and price/quantity scenarios.
 
-[Project](AdventureWorks.pbip) · [Model & DAX](docs/MODEL.md) · [Change notes](docs/QUALITY_REVIEW.md)
+**Moamen Taha Abuzied** · Power BI · DAX · Power Query
 
-## Open the revised project
+[Revised project](powerbi/AdventureWorks.pbip) · [Original PBIX](powerbi/legacy/adventure.pbix) · [Model & DAX](docs/MODEL.md)
 
-Download the whole repository and open `AdventureWorks.pbip` in Power BI Desktop. Keep its Report and SemanticModel folders together.
+## Project files
 
-The revised queries expect a local folder of matching compressed imported-table snapshots. Those data files are supplied privately to the owner and are excluded from GitHub. Set the **DataFolder** parameter to that local folder, apply changes and refresh. Other users must provide compatible local snapshots or adapt the source queries.
+| Folder | Contents |
+| --- | --- |
+| [powerbi/](powerbi/) | Revised Power BI project and the original report under legacy/ |
+| [docs/](docs/) | Model reference, change notes and supporting tools |
+| [assets/](assets/) | Supporting portfolio graphic |
+
+## Open the revised report
+
+1. Download the whole repository and extract it.
+2. Open `powerbi/AdventureWorks.pbip` in Power BI Desktop.
+3. Set **DataFolder** to the matching local data folder, apply changes and refresh.
+
+The revised source queries expect matching compressed snapshots of the imported tables. Those snapshots were supplied privately to the owner and are not included on GitHub. Other users must supply compatible data or adapt the queries.
+
+The original `powerbi/legacy/adventure.pbix` is retained for reference and does not include the project changes.
 
 ## Report pages
 
-- Sales Overview: sales measures, trends and geography.
-- Product Performance: drillthrough, target gauges and price/quantity scenarios.
-- Customer Insights: customer sales and gross margin comparison.
-- Report Tooltip: supporting tooltip.
+- **Sales Overview** — revenue, gross profit, orders, trends and geography.
+- **Product Performance** — product drillthrough, targets and price/quantity scenarios.
+- **Customer Insights** — customer sales and gross margin comparison.
+- **Report Tooltip** — supporting tooltip.
 
-## Changes
+## Changes and validation
 
-The revised PBIP source corrects safe division, the quantity scenario reference, the prior-month profit date reference, customer relationship direction and cardinality, and gauge actual/target/maximum roles. The customer matrix excludes return rate, and gross margin by gender uses bars. An oversized automatic narrative was replaced with a short scenario guide.
+The PBIP definitions include corrected division and scenario measures, customer relationship settings, target gauges and customer/margin visuals. [Change notes](docs/QUALITY_REVIEW.md).
 
-The project definitions were checked structurally. **Desktop opening, refresh, DAX execution and visual verification remain pending.**
+Source definitions were checked structurally. **Opening, refreshing, executing DAX and reviewing the visuals in Power BI Desktop remain pending.**
 
-`adventure.pbix` is the unchanged legacy report and does not include these PBIP changes. Existing historical audit materials describe the original report.
+Optional audit utilities and historical proposals are under [docs/maintenance/](docs/maintenance/). Run the original PBIX audit from the repository root:
+
+```bash
+python -m pip install -r docs/maintenance/requirements.txt
+python docs/maintenance/tools/audit_model.py "powerbi/legacy/adventure.pbix" --output audit-results.json
+```
 
 [Maven Market](https://github.com/moamenabden7-max/Maven-Market-PowerBI) · [LinkedIn](https://www.linkedin.com/in/moamen-taha-data-analyst/)

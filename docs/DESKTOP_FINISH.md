@@ -1,6 +1,6 @@
 # Open and verify
 
-- Open AdventureWorks.pbip with its sibling Report and SemanticModel folders.
+- Open powerbi/AdventureWorks.pbip with its sibling Report and SemanticModel folders.
 - Supply the matching private data snapshots locally, set DataFolder, apply changes and refresh.
 - Inspect visible pages, slicers, bookmarks, tooltip and product drillthrough.
 - Check prior-month measures with a single month selected.
