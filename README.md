@@ -1,47 +1,63 @@
-# AdventureWorks | Power BI Analytics
+<p align="center"><img src="assets/project-cover.svg" alt="AdventureWorks — Sales and Customer Analytics by Moamen Taha Abuzied" width="100%"></p>
 
-Sales, product performance, customer insights and price/quantity scenarios.
+<p align="center">
+<strong><a href="https://github.com/moamenabden7-max/AdventureWorks-Sales-PowerBI/raw/refs/heads/main/powerbi/legacy/adventure.pbix">Download original report (.pbix)</a></strong>
+&nbsp; · &nbsp;
+<a href="powerbi/">Browse revised project</a>
+&nbsp; · &nbsp;
+<a href="docs/MODEL.md">Explore DAX &amp; model</a>
+</p>
 
-**Moamen Taha Abuzied** · Power BI · DAX · Power Query
+# AdventureWorks · Sales & Customer Analytics
 
-[Revised project](powerbi/AdventureWorks.pbip) · [Original PBIX](powerbi/legacy/adventure.pbix) · [Model & DAX](docs/MODEL.md)
+A Power BI portfolio project exploring sales performance, product profitability and customer activity, with price and quantity scenarios.
 
-## Project files
+## Start here
 
-| Folder | Contents |
+| What would you like to do? | Open this |
 | --- | --- |
-| [powerbi/](powerbi/) | Revised Power BI project and the original report under legacy/ |
-| [docs/](docs/) | Model reference, change notes and supporting tools |
-| [assets/](assets/) | Supporting portfolio graphic |
+| **View the original report in Power BI Desktop** | **[Download original PBIX](https://github.com/moamenabden7-max/AdventureWorks-Sales-PowerBI/raw/refs/heads/main/powerbi/legacy/adventure.pbix)** — one file |
+| **Review the revised report and model source** | **[Revised Power BI project](powerbi/)** — project files and opening guide |
+| **Understand the calculations and relationships** | **[Model & DAX reference](docs/MODEL.md)** |
 
-## Open the revised report
+**Two versions, clearly separated:** the PBIX download is the original report. The revised PBIP contains the source changes and requires matching local data; Desktop validation is still pending.
 
-1. Download the whole repository and extract it.
-2. Open `powerbi/AdventureWorks.pbip` in Power BI Desktop.
-3. Set **DataFolder** to the matching local data folder, apply changes and refresh.
+## What the report explores
 
-The revised source queries expect matching compressed snapshots of the imported tables. Those snapshots were supplied privately to the owner and are not included on GitHub. Other users must supply compatible data or adapt the queries.
+| View | Business questions |
+| --- | --- |
+| **Sales Overview** | How are revenue, gross profit and orders changing across time and locations? |
+| **Product Performance** | Which products drive performance, how do they compare with targets, and how do price/quantity assumptions affect profit? |
+| **Customer Insights** | How do customer sales, activity and gross margin compare? |
 
-The original `powerbi/legacy/adventure.pbix` is retained for reference and does not include the project changes.
+## Open the original report
 
-## Report pages
+1. **[Download the PBIX](https://github.com/moamenabden7-max/AdventureWorks-Sales-PowerBI/raw/refs/heads/main/powerbi/legacy/adventure.pbix)**.
+2. Open it in **Power BI Desktop**.
 
-- **Sales Overview** — revenue, gross profit, orders, trends and geography.
-- **Product Performance** — product drillthrough, targets and price/quantity scenarios.
-- **Customer Insights** — customer sales and gross margin comparison.
-- **Report Tooltip** — supporting tooltip.
+Refreshing the original report may require its original source files and updated local paths. It does not include the revised project changes.
 
-## Changes and validation
+<details>
+<summary><strong>Working with the revised source project?</strong></summary>
 
-The PBIP definitions include corrected division and scenario measures, customer relationship settings, target gauges and customer/margin visuals. [Change notes](docs/QUALITY_REVIEW.md).
+Download the whole repository with **Code → Download ZIP**, then extract it. Open `powerbi/AdventureWorks.pbip` and keep the adjacent `.Report` and `.SemanticModel` folders together.
 
-Source definitions were checked structurally. **Opening, refreshing, executing DAX and reviewing the visuals in Power BI Desktop remain pending.**
+Set **DataFolder** to the matching local data folder, then apply and refresh. The revised queries expect compressed snapshots of the imported tables. These data files are not included on GitHub; compatible data or adapted source queries are required.
 
-Optional audit utilities and historical proposals are under [docs/maintenance/](docs/maintenance/). Run the original PBIX audit from the repository root:
+The revised definitions include corrected division and scenario references, customer relationship settings, gauge bindings and customer/margin visuals. [See the change notes](docs/QUALITY_REVIEW.md). Source structure was checked; opening, refreshing, DAX execution and visual inspection in Desktop remain pending.
 
-```bash
-python -m pip install -r docs/maintenance/requirements.txt
-python docs/maintenance/tools/audit_model.py "powerbi/legacy/adventure.pbix" --output audit-results.json
-```
+</details>
 
-[Maven Market](https://github.com/moamenabden7-max/Maven-Market-PowerBI) · [LinkedIn](https://www.linkedin.com/in/moamen-taha-data-analyst/)
+## Find your way around
+
+| Location | Purpose |
+| --- | --- |
+| [powerbi/](powerbi/) | Report files and the guide to choosing a version |
+| [docs/](docs/) | Model reference, change notes and verification guidance |
+| [assets/](assets/) | Portfolio visuals |
+| [docs/maintenance/](docs/maintenance/) | Optional audit tools and historical proposals |
+
+---
+
+**Moamen Taha Abuzied** · Data Analytics & Business Intelligence  
+[LinkedIn](https://www.linkedin.com/in/moamen-taha-data-analyst/) · [Maven Market project](https://github.com/moamenabden7-max/Maven-Market-PowerBI)
