@@ -5,6 +5,6 @@
 - Inspect visible pages, slicers, bookmarks, tooltip and product drillthrough.
 - Check prior-month measures with a single month selected.
 - Check that zero price and quantity adjustments reproduce the baseline, and a quantity adjustment of minus one hundred percent yields zero adjusted revenue and cost.
-- Save and reopen a new PBIX locally before treating it as a replacement for the legacy report.
+- After verifying the project in Desktop, save a PBIX copy locally and reopen it to verify that exported file.
 
 Data snapshots are not included in GitHub. Others must supply compatible local data or adapt the source queries.

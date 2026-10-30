@@ -14,6 +14,6 @@ Applied to the PBIP definitions:
 
 The source definitions have structural checks. Power Query evaluation, relationship processing, DAX execution, layout and interaction testing still require Power BI Desktop.
 
-Private data snapshots and derived verification files are not included in this public update. The existing PBIX and historical audit files remain legacy references.
+Private data snapshots and derived verification files are not included in this public update. Historical audit files describe the earlier input and are not validation of the current project.
 
-Repository files are grouped under powerbi/. The original PBIX is preserved under powerbi/legacy/; supporting tools and historical proposals are under docs/maintenance/.
+Project files are grouped under powerbi/; supporting tools and historical proposals are under docs/maintenance/.

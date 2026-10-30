@@ -1,6 +1,6 @@
 # Revised model and measures
 
-Source of truth: powerbi/AdventureWorks.SemanticModel/definition. This reference describes the revised PBIP, not the legacy PBIX.
+Source of truth: powerbi/AdventureWorks.SemanticModel/definition. This reference describes the current PBIP project.
 
 Customers with null keys are filtered at refresh; valid keys are unique and all sales keys match. Customer filters flow to sales through a one-to-many relationship. Other business relationships are preserved.
 

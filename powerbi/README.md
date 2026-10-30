@@ -1,20 +1,19 @@
-# Power BI report files
+# AdventureWorks · Power BI project
 
-[← Project home](../README.md)
+[← Project home](../README.md) · [Download whole project ZIP](https://github.com/moamenabden7-max/AdventureWorks-Sales-PowerBI/archive/refs/heads/main.zip)
 
-## Choose your version
+**Open [AdventureWorks.pbip](AdventureWorks.pbip) in Power BI Desktop.**
 
-| Version | File | What to expect |
-| --- | --- | --- |
-| **Original report** | **[Download PBIX](https://github.com/moamenabden7-max/AdventureWorks-Sales-PowerBI/raw/refs/heads/main/powerbi/legacy/adventure.pbix)** | One report file to open in Power BI Desktop. Does not include the revised source changes. |
-| **Revised source** | [AdventureWorks.pbip](AdventureWorks.pbip) | Updated report/model definitions. Requires matching local data and Desktop validation. |
+Keep the following components together:
 
-## Open the revised source
+| Component | Purpose |
+| --- | --- |
+| `AdventureWorks.pbip` | Project entry point |
+| `AdventureWorks.Report/` | Pages, visuals and report resources |
+| `AdventureWorks.SemanticModel/` | Tables, relationships, source queries and measures |
 
-Download the **whole repository**, extract it, then open `powerbi/AdventureWorks.pbip`. Keep `AdventureWorks.Report` and `AdventureWorks.SemanticModel` next to it.
+Download and extract the whole repository. Set **DataFolder** to your matching local data folder, then apply changes and refresh. Data snapshots are not included on GitHub.
 
-Set **DataFolder** to your matching local snapshots, apply changes and refresh. Data snapshots are not included on GitHub.
+The source definitions were structurally checked; Desktop opening, refresh, DAX execution and visual validation remain pending.
 
-[Opening checklist](../docs/DESKTOP_FINISH.md) · [Model & DAX](../docs/MODEL.md) · [Change notes](../docs/QUALITY_REVIEW.md)
-
-The `legacy/` folder preserves the original PBIX. Report and model folders are components of the revised project, not additional reports.
+[Desktop checklist](../docs/DESKTOP_FINISH.md) · [Model & DAX](../docs/MODEL.md) · [Change notes](../docs/QUALITY_REVIEW.md)

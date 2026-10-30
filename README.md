@@ -1,9 +1,9 @@
 <p align="center"><img src="assets/project-cover.svg" alt="AdventureWorks — Sales and Customer Analytics by Moamen Taha Abuzied" width="100%"></p>
 
 <p align="center">
-<strong><a href="https://github.com/moamenabden7-max/AdventureWorks-Sales-PowerBI/raw/refs/heads/main/powerbi/legacy/adventure.pbix">Download original report (.pbix)</a></strong>
+<strong><a href="https://github.com/moamenabden7-max/AdventureWorks-Sales-PowerBI/archive/refs/heads/main.zip">Download project ZIP</a></strong>
 &nbsp; · &nbsp;
-<a href="powerbi/">Browse revised project</a>
+<a href="powerbi/README.md">Opening guide</a>
 &nbsp; · &nbsp;
 <a href="docs/MODEL.md">Explore DAX &amp; model</a>
 </p>
@@ -12,15 +12,15 @@
 
 A Power BI portfolio project exploring sales performance, product profitability and customer activity, with price and quantity scenarios.
 
-## Start here
+**Project file: [AdventureWorks.pbip](powerbi/AdventureWorks.pbip).** Download the whole project ZIP so its report and model folders stay together.
 
-| What would you like to do? | Open this |
-| --- | --- |
-| **View the original report in Power BI Desktop** | **[Download original PBIX](https://github.com/moamenabden7-max/AdventureWorks-Sales-PowerBI/raw/refs/heads/main/powerbi/legacy/adventure.pbix)** — one file |
-| **Review the revised report and model source** | **[Revised Power BI project](powerbi/)** — project files and opening guide |
-| **Understand the calculations and relationships** | **[Model & DAX reference](docs/MODEL.md)** |
+## Open the project
 
-**Two versions, clearly separated:** the PBIX download is the original report. The revised PBIP contains the source changes and requires matching local data; Desktop validation is still pending.
+1. **[Download the project ZIP](https://github.com/moamenabden7-max/AdventureWorks-Sales-PowerBI/archive/refs/heads/main.zip)** and extract it.
+2. Open **`powerbi/AdventureWorks.pbip`** in Power BI Desktop.
+3. Set **DataFolder** to your matching local data folder, apply changes and refresh.
+
+The project requires matching compressed snapshots of the imported tables. Data files are not included on GitHub; compatible local data or adapted source queries are required.
 
 ## What the report explores
 
@@ -30,32 +30,25 @@ A Power BI portfolio project exploring sales performance, product profitability 
 | **Product Performance** | Which products drive performance, how do they compare with targets, and how do price/quantity assumptions affect profit? |
 | **Customer Insights** | How do customer sales, activity and gross margin compare? |
 
-## Open the original report
+## Model and report work
 
-1. **[Download the PBIX](https://github.com/moamenabden7-max/AdventureWorks-Sales-PowerBI/raw/refs/heads/main/powerbi/legacy/adventure.pbix)**.
-2. Open it in **Power BI Desktop**.
+Corrected division and scenario references, customer relationship settings, target gauge bindings and customer/margin visuals. [Read the change notes](docs/QUALITY_REVIEW.md).
 
-Refreshing the original report may require its original source files and updated local paths. It does not include the revised project changes.
+Source structure was checked. **Opening, refreshing, DAX execution and visual inspection in Power BI Desktop remain pending.**
 
 <details>
-<summary><strong>Working with the revised source project?</strong></summary>
-
-Download the whole repository with **Code → Download ZIP**, then extract it. Open `powerbi/AdventureWorks.pbip` and keep the adjacent `.Report` and `.SemanticModel` folders together.
-
-Set **DataFolder** to the matching local data folder, then apply and refresh. The revised queries expect compressed snapshots of the imported tables. These data files are not included on GitHub; compatible data or adapted source queries are required.
-
-The revised definitions include corrected division and scenario references, customer relationship settings, gauge bindings and customer/margin visuals. [See the change notes](docs/QUALITY_REVIEW.md). Source structure was checked; opening, refreshing, DAX execution and visual inspection in Desktop remain pending.
-
-</details>
-
-## Find your way around
+<summary><strong>Project files and technical documentation</strong></summary>
 
 | Location | Purpose |
 | --- | --- |
-| [powerbi/](powerbi/) | Report files and the guide to choosing a version |
-| [docs/](docs/) | Model reference, change notes and verification guidance |
+| [powerbi/](powerbi/) | Project entry point, report definitions and semantic model |
+| [docs/](docs/) | Model reference, change notes and Desktop checklist |
 | [assets/](assets/) | Portfolio visuals |
 | [docs/maintenance/](docs/maintenance/) | Optional audit tools and historical proposals |
+
+The Report and SemanticModel folders are components of this project, not separate report versions.
+
+</details>
 
 ---
 
